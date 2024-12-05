@@ -33,7 +33,7 @@ from pymatgen.io.vasp.sets import MPStaticSet
 from pymatgen.io.vasp.inputs import Incar, Poscar
 from pymatgen.io.vasp.outputs import Oszicar, Outcar
 
-from pymatgen.analysis.magnetism.spin_pso import *
+from pymatgen.analysis.spinlattice.spin_pso import *
 
 import numpy as np
 import numpy.linalg as npla
