@@ -16,9 +16,9 @@ from hiphive import (ForceConstants, ForceConstantPotential,
 from hiphive.force_constant_model import ForceConstantModel
 from hiphive.cutoffs import is_cutoff_allowed, estimate_maximum_cutoff
 from hiphive.fitting import Optimizer
-from hiphive.renormalization import Renormalization
+# from hiphive.renormalization import Renormalization
 from hiphive.utilities import get_displacements
-from hiphive.run_tools import _clean_data, free_energy_correction, construct_fit_data
+# from hiphive.run_tools import _clean_data, free_energy_correction, construct_fit_data
 
 from pymatgen.core.structure import Structure
 from pymatgen.io.ase import AseAtomsAdaptor
@@ -28,7 +28,7 @@ from ase.atoms import Atoms
 from ase.cell import Cell
 
 from phonopy import Phonopy
-from phono3py.phonon3.gruneisen import Gruneisen
+# from phono3py.phonon3.gruneisen import Gruneisen
 
 
 __author__ = "Alex Ganose, Rees Chang, Junsoo Park, Zhuoying Zhu"

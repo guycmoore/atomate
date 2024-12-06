@@ -122,8 +122,8 @@ class SpinPSO_WF:
 
     def get_wf_optimize(
         self,
-        user_incar_settings=None,
-        user_kpoints_settings=None,
+        user_incar_settings={},
+        user_kpoints_settings={},
         max_iter_limit=10,
         energy_convergence_tol=1.0e-4,
         dt=1.0, mass=1.0,
@@ -533,7 +533,7 @@ class SpinPSOiterTask(FiretaskBase):
         summaries.append(summary)
 
         mmdb.collection = mmdb.db["spin_pso"]
-        mmdb.collection.insert(summaries)
+        mmdb.collection.insert_many(summaries)
 
         logger.info("SpinPSO iteration is complete.")
 
@@ -579,7 +579,7 @@ class SpinPSOiterTask(FiretaskBase):
         for i in agent_ids:
 
             uis = self.user_incar_settings.copy()
-            uks = self.user_kpoints_settings.copy()
+            uks = self.user_kpoints_settings
 
             struct_out = Structure.from_dict(self.structs_out[i])
             magmoms = [[0.0, 0.0, 0.0] for s in struct_out]
@@ -600,7 +600,7 @@ class SpinPSOiterTask(FiretaskBase):
             #     uis["EDIFF"] = 100.0 * self.user_incar_settings["EDIFF"]
             #     uis["ALGO"] = "Normal"
 
-            vis_params = {"user_incar_settings": uis.copy(), "user_kpoints_settings": uks.copy()}
+            vis_params = {"user_incar_settings": uis.copy(), "user_kpoints_settings": uks}
             vis = NoncollinearConstrainSet(structure=struct_mag.copy(), **vis_params.copy())
 
             fw = SpinPSOrunVaspFW(
@@ -771,7 +771,7 @@ class SpinPSOrunVaspFW(NoncollinearConstrainFW):
 #         summaries.append(summary)
 
 #         mmdb.collection = mmdb.db["spin_pso"]
-#         mmdb.collection.insert(summaries)
+#         mmdb.collection.insert_many(summaries)
 
 #         logger.info("SpinPSO agent run analysis is complete.")
 
